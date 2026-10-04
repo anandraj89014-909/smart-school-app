@@ -1,0 +1,236 @@
+/* Dynamic White-Label Brand CSS Variables */
+:root {
+  --primary-color: #059669;
+  --primary-dark: #047857;
+  --primary-light: #d1fae5;
+  --secondary-color: #f59e0b;
+  --school-name: "ABC Public School";
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Transitions */
+.transition-smooth {
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Mobile Simulator Phone Mock Frame */
+.mobile-frame-container {
+  width: 390px;
+  height: 820px;
+  max-width: 100%;
+  border: 12px solid #0f172a;
+  border-radius: 48px;
+  box-shadow: 0 25px 50px -12px rgba(15, 23, 42, 0.35), 0 0 0 1px rgba(255, 255, 255, 0.1);
+  position: relative;
+  overflow: hidden;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Notch & Island */
+.mobile-notch {
+  width: 130px;
+  height: 24px;
+  background: #0f172a;
+  border-bottom-left-radius: 16px;
+  border-bottom-right-radius: 16px;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mobile-notch-camera {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #1e293b;
+  border: 1px solid #334155;
+}
+
+/* Glassmorphism Accents */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+/* Pulse badge */
+.pulse-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7);
+  }
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 8px rgba(34, 197, 94, 0);
+  }
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(34, 197, 94, 0);
+  }}
+  /* Mobile View: Force all options and cards into clean ROW form */
+#mobile-view-container .grid {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+#mobile-view-container .grid > div {
+  width: 100%;
+}/* =====================================================
+   PREMIUM DEEP BLACK DARK THEME (Sleek & High Contrast)
+   ===================================================== */
+body.dark-mode {
+  background-color: #080c14 !important;
+  color: #f8fafc !important;
+}
+
+/* Headers & Main Panels */
+body.dark-mode header,
+body.dark-mode footer,
+body.dark-mode .bg-white {
+  background-color: #0f172a !important;
+  color: #f8fafc !important;
+  border-color: #1e293b !important;
+}
+
+/* ALL Cards & Teacher Rows: Pure sleek midnight black (No more foggy grey!) */
+body.dark-mode .bg-slate-50,
+body.dark-mode .bg-slate-100,
+body.dark-mode [class*="bg-slate-50"],
+body.dark-mode [class*="bg-slate-100"] {
+  background-color: #162032 !important;
+  border-color: #24324a !important;
+  color: #f8fafc !important;
+}
+
+/* Crisp Pure White Text for Names and Titles */
+body.dark-mode .text-slate-900,
+body.dark-mode .text-slate-800,
+body.dark-mode .text-slate-700,
+body.dark-mode h2,
+body.dark-mode h3,
+body.dark-mode h4,
+body.dark-mode [class*="font-bold"] {
+  color: #ffffff !important;
+}
+
+/* Clear, Readable Subtitles */
+body.dark-mode .text-slate-600,
+body.dark-mode .text-slate-500,
+body.dark-mode .text-slate-400 {
+  color: #94a3b8 !important;
+}
+
+/* Hover Effect on Cards */
+body.dark-mode [class*="bg-slate-50"]:hover,
+body.dark-mode .hover\:bg-slate-50:hover,
+body.dark-mode .hover\:bg-slate-100:hover {
+  background-color: #1e2d47 !important;
+}
+
+/* Inputs & Dropdowns */
+body.dark-mode input,
+body.dark-mode select {
+  background-color: #0f172a !important;
+  color: #ffffff !important;
+  border-color: #334155 !important;
+}
+
+body.dark-mode #mobile-view-container {
+  background-color: #080c14 !important;
+}
+/* =====================================================
+   DARK MODE GLOWING BADGES (Fixes All Circled White Patches)
+   ===================================================== */
+
+/* 1. Green Badges (SAAS TENANT & 8 Academic Departments) */
+body.dark-mode .bg-emerald-100,
+body.dark-mode .bg-emerald-50 {
+  background-color: rgba(16, 185, 129, 0.15) !important;
+  color: #34d399 !important;
+  border: 1px solid rgba(52, 211, 153, 0.35) !important;
+}
+
+/* 2. Red Badges (URGENT • ACADEMIC) */
+body.dark-mode .bg-rose-100,
+body.dark-mode .bg-rose-50 {
+  background-color: rgba(244, 63, 94, 0.15) !important;
+  color: #fb7185 !important;
+  border: 1px solid rgba(251, 113, 133, 0.35) !important;
+}
+
+/* 3. Amber / Yellow Badges (HIGH • EVENT) */
+body.dark-mode .bg-amber-100,
+body.dark-mode .bg-amber-50 {
+  background-color: rgba(245, 158, 11, 0.15) !important;
+  color: #fbbf24 !important;
+  border: 1px solid rgba(251, 191, 36, 0.35) !important;
+}
+
+/* 4. Blue & Purple Badges */
+body.dark-mode .bg-blue-100,
+body.dark-mode .bg-blue-50,
+body.dark-mode .bg-indigo-100,
+body.dark-mode .bg-purple-100 {
+  background-color: rgba(59, 130, 246, 0.15) !important;
+  color: #60a5fa !important;
+  border: 1px solid rgba(96, 165, 250, 0.35) !important;
+}
+
+/* 5. Neutral Code / Pill Badges */
+body.dark-mode .bg-slate-200,
+body.dark-mode span.bg-slate-100 {
+  background-color: rgba(255, 255, 255, 0.08) !important;
+  color: #cbd5e1 !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+}/* =====================================================
+   AUTO FULL-SCREEN ON REAL MOBILE PHONES
+   ===================================================== */
+@media (max-width: 640px) {
+  .mobile-frame-container {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: 100vh !important;
+    border: none !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+  }
+  .mobile-notch {
+    display: none !important;
+  }
+  #mobile-wrapper {
+    margin: 0 !important;
+    width: 100% !important;
+  }
+}

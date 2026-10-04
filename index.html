@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Smart School Management Platform</title>
+  <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
+  <link rel="stylesheet" href="css/custom.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+  </style>
+</head>
+<body class="bg-slate-100 text-slate-800 antialiased min-h-screen flex flex-col">
+
+  <!-- TOP GLOBAL HEADER -->
+  <header class="bg-white border-b border-slate-200 sticky top-0 z-40 shadow-xs">
+    <div class="max-w-7xl mx-auto px-4 py-3 flex flex-col md:flex-row md:items-center justify-between gap-3">
+      
+      <!-- Brand & Clickable Logo -->
+      <div class="flex items-center gap-3">
+        <div onclick="document.getElementById('logo-upload-input').click()" title="Click to upload school logo image" class="school-brand-logo w-11 h-11 rounded-xl text-white font-black flex items-center justify-center text-sm shadow-md transition-all cursor-pointer hover:opacity-80 border border-slate-300/40">
+          ABC
+        </div>
+        <input type="file" id="logo-upload-input" accept="image/*" style="display:none" onchange="uploadSchoolLogo(event)">
+        
+        <div>
+          <div class="flex items-center gap-2">
+            <h1 class="school-brand-name font-extrabold text-base text-slate-900 leading-tight">ABC Public School</h1>
+            <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 uppercase">SaaS Tenant</span>
+          </div>
+          <p class="school-brand-motto text-xs text-slate-400 hidden sm:block">Excellence in Knowledge, Integrity & Character</p>
+        </div>
+      </div>
+
+      <!-- Controls: Tenant Switcher, Auto/Web/Mobile, Theme & Reset -->
+      <div class="flex items-center gap-2.5 flex-wrap">
+        
+        <!-- School Multi-Tenant Switcher -->
+        <div class="flex items-center gap-1.5 bg-slate-50 border border-slate-300 rounded-xl px-2.5 py-1 text-xs">
+          <span class="text-slate-400 font-bold">🏫 Tenant:</span>
+          <select id="school-select" onchange="App.handleSchoolChange(this.value)" class="bg-transparent font-bold text-slate-800 focus:outline-none cursor-pointer">
+          </select>
+        </div>
+
+        <!-- Auto Screen Viewport Switcher -->
+        <div class="bg-slate-100 p-1 rounded-xl flex items-center gap-1 text-xs font-bold text-slate-600">
+          <button id="btn-view-auto" onclick="App.enableAutoMode()" class="px-2.5 py-1 rounded-lg bg-indigo-600 text-white shadow-xs transition flex items-center gap-1">
+            <span>⚡</span> Auto
+          </button>
+          <button id="btn-view-desktop" onclick="App.setManualView('desktop')" class="px-2.5 py-1 rounded-lg hover:text-slate-900 transition flex items-center gap-1">
+            <span>💻</span> Web
+          </button>
+          <button id="btn-view-mobile" onclick="App.setManualView('mobile')" class="px-2.5 py-1 rounded-lg hover:text-slate-900 transition flex items-center gap-1">
+            <span>📱</span> Mobile
+          </button>
+        </div>
+
+        <!-- Theme Toggle (Black & White) -->
+        <button id="theme-btn" onclick="toggleBlackWhiteTheme()" class="px-3 py-1 rounded-xl bg-slate-800 text-white hover:bg-slate-700 text-xs font-bold flex items-center gap-1.5 transition shadow-xs cursor-pointer">
+          <span id="theme-icon">🌙</span>
+          <span id="theme-label">Dark</span>
+        </button>
+
+        <!-- Reset Seeds -->
+        <button onclick="App.resetAllData()" title="Reset demo database" class="p-1.5 rounded-xl border border-slate-200 hover:bg-slate-50 text-slate-500 text-xs cursor-pointer">
+          ↺ Reset
+        </button>
+
+      </div>
+
+    </div>
+
+    <!-- ROLE & LOGIN SESSION BAR -->
+    <div class="bg-slate-50 border-t border-slate-200/80 px-4 py-2">
+      <div class="max-w-7xl mx-auto flex items-center justify-between gap-4 overflow-x-auto">
+        <div class="flex items-center gap-1.5 text-xs font-semibold">
+          <span class="text-slate-400 uppercase text-[10px] font-bold tracking-wider mr-1">Logged In As:</span>
+
+          <button onclick="App.switchRole('admin')" id="role-btn-admin" class="px-3 py-1.5 rounded-xl transition flex items-center gap-1.5 text-xs font-bold">
+            <span>👨‍💻</span> Admin
+          </button>
+          <button onclick="App.switchRole('principal')" id="role-btn-principal" class="px-3 py-1.5 rounded-xl transition flex items-center gap-1.5 text-xs font-bold">
+            <span>🏫</span> Principal
+          </button>
+          <button onclick="App.switchRole('teacher')" id="role-btn-teacher" class="px-3 py-1.5 rounded-xl transition flex items-center gap-1.5 text-xs font-bold">
+            <span>👨‍🏫</span> Teacher
+          </button>
+          <button onclick="App.switchRole('student')" id="role-btn-student" class="px-3 py-1.5 rounded-xl transition flex items-center gap-1.5 text-xs font-bold">
+            <span>👨‍🎓</span> Student
+          </button>
+          <button onclick="App.switchRole('parent')" id="role-btn-parent" class="px-3 py-1.5 rounded-xl transition flex items-center gap-1.5 text-xs font-bold">
+            <span>👨‍👩‍👧</span> Parent
+          </button>
+        </div>
+
+        <!-- Quick Login & Create Account (Create button auto-hides for Student/Parent) -->
+        <div class="flex items-center gap-2">
+          <button onclick="openLoginModal()" class="px-3 py-1.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs shadow-xs transition flex items-center gap-1 cursor-pointer">
+            <span>🔐</span> Login / Switch User
+          </button>
+          
+          <button id="create-account-btn" onclick="openRoleBasedAccountCreator()" class="px-3 py-1.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs shadow-xs transition flex items-center gap-1 cursor-pointer">
+            <span>+</span> Create Account
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN APP CONTAINER -->
+  <main class="flex-1 max-w-7xl w-full mx-auto p-4 md:p-6 flex flex-col justify-start items-center">
+    
+    <!-- DESKTOP CONTAINER -->
+    <div id="desktop-wrapper" class="w-full">
+      <div id="view-container" class="w-full">
+      </div>
+    </div>
+
+    <!-- MOBILE SIMULATOR FRAME -->
+    <div id="mobile-wrapper" class="hidden my-4">
+      <div class="mobile-frame-container">
+        <div class="mobile-notch">
+          <div class="mobile-notch-camera"></div>
+        </div>
+
+        <div class="pt-7 px-6 pb-2 flex items-center justify-between text-[11px] font-bold text-slate-900 bg-white border-b border-slate-100 select-none">
+          <span>09:41</span>
+          <div class="flex items-center gap-1.5">
+            <span>📶</span>
+            <span>5G</span>
+            <span>🔋 100%</span>
+          </div>
+        </div>
+
+        <div class="px-4 py-2.5 bg-slate-900 text-white flex items-center justify-between select-none">
+          <div class="flex items-center gap-2">
+            <div class="school-brand-logo w-7 h-7 rounded-lg text-white font-extrabold flex items-center justify-center text-xs shadow-xs" style="background: var(--primary-color)">
+              ABC
+            </div>
+            <div class="truncate max-w-[200px]">
+              <div class="school-brand-name font-bold text-xs truncate">ABC Public School</div>
+              <div id="mobile-role-label" class="text-[9px] text-slate-400 capitalize">Portal</div>
+            </div>
+          </div>
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+        </div>
+
+        <div id="mobile-view-container" class="flex-1 overflow-y-auto p-3 bg-slate-50">
+        </div>
+
+        <div class="bg-white border-t border-slate-200 py-2 px-3 flex items-center justify-around text-center text-xs select-none">
+          <button onclick="App.switchRole('student')" class="flex flex-col items-center gap-0.5 text-indigo-600 font-bold">
+            <span class="text-base">🏠</span>
+            <span class="text-[10px]">Home</span>
+          </button>
+          <button onclick="App.switchRole('teacher')" class="flex flex-col items-center gap-0.5 text-slate-400 hover:text-slate-800">
+            <span class="text-base">📅</span>
+            <span class="text-[10px]">Roll Call</span>
+          </button>
+          <button onclick="App.switchRole('parent')" class="flex flex-col items-center gap-0.5 text-slate-400 hover:text-slate-800">
+            <span class="text-base">💬</span>
+            <span class="text-[10px]">Family</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-white border-t border-slate-200 py-4 px-4 text-center text-xs text-slate-500">
+    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2">
+      <div class="flex items-center gap-2">
+        <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+        <span class="font-bold text-slate-700">Smart School Management Platform</span>
+        <span>&bull; Complete Enterprise Web & Mobile App Ecosystem</span>
+      </div>
+      <div class="text-[11px] text-slate-400">
+        Multi-Tenant Architecture &bull; 5 Roles &bull; Encrypted Database
+      </div>
+    </div>
+  </footer>
+
+  <!-- LOGIN & AUTH MODAL POPUP -->
+  <div id="login-modal" class="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm hidden flex items-center justify-center p-4">
+    <div class="bg-white rounded-3xl max-w-md w-full p-6 shadow-2xl space-y-4">
+      
+      <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+        <div class="flex items-center gap-2">
+          <div class="w-9 h-9 rounded-xl bg-indigo-600 text-white flex items-center justify-center text-lg">🔐</div>
+          <div>
+            <h3 class="font-extrabold text-slate-900 text-base">Account Login</h3>
+            <p class="text-[11px] text-slate-400">Sign in with User ID and Password</p>
+          </div>
+        </div>
+        <button onclick="closeLoginModal()" class="text-slate-400 hover:text-slate-600 text-lg font-bold cursor-pointer">✕</button>
+      </div>
+
+      <form onsubmit="handleUserLogin(event)" class="space-y-3 text-xs">
+        <div>
+          <label class="block font-bold text-slate-700 mb-1">User ID / Username</label>
+          <input type="text" id="login-userid" placeholder="e.g. admin_alex, teacher_sarah" class="w-full p-2.5 rounded-xl border border-slate-300 font-mono" required>
+        </div>
+
+        <div>
+          <label class="block font-bold text-slate-700 mb-1">Password</label>
+          <input type="password" id="login-password" placeholder="Enter password..." class="w-full p-2.5 rounded-xl border border-slate-300 font-mono" required>
+        </div>
+
+        <button type="submit" class="w-full py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold shadow-md transition cursor-pointer">
+          Sign In
+        </button>
+      </form>
+
+      <!-- 1-Click Quick Demo Login Chips -->
+      <div class="pt-3 border-t border-slate-100 space-y-2">
+        <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400">1-Click Quick Demo Logins:</span>
+        <div class="grid grid-cols-2 gap-2 text-[11px]">
+          <button onclick="quickLogin('admin_alex', 'admin@123')" class="p-2 rounded-xl bg-slate-50 hover:bg-indigo-50 border border-slate-200 font-bold text-left transition cursor-pointer">
+            👨‍💻 Admin <span class="block text-[9px] text-slate-400 font-mono">admin_alex</span>
+          </button>
+          <button onclick="quickLogin('principal_abc', 'princ@123')" class="p-2 rounded-xl bg-slate-50 hover:bg-emerald-50 border border-slate-200 font-bold text-left transition cursor-pointer">
+            🏫 Principal <span class="block text-[9px] text-slate-400 font-mono">principal_abc</span>
+          </button>
+          <button onclick="quickLogin('teacher_sarah', 'teach@123')" class="p-2 rounded-xl bg-slate-50 hover:bg-amber-50 border border-slate-200 font-bold text-left transition cursor-pointer">
+            👨‍🏫 Teacher <span class="block text-[9px] text-slate-400 font-mono">teacher_sarah</span>
+          </button>
+          <button onclick="quickLogin('student_aarav', 'stud@123')" class="p-2 rounded-xl bg-slate-50 hover:bg-purple-50 border border-slate-200 font-bold text-left transition cursor-pointer">
+            👨‍🎓 Student <span class="block text-[9px] text-slate-400 font-mono">student_aarav</span>
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- JAVASCRIPT MODULES INCLUSION -->
+  <script src="js/mockData.js"></script>
+  <script src="js/store.js"></script>
+  <script src="js/modules/whiteLabel.js"></script>
+  <script src="js/modules/adminView.js"></script>
+  <script src="js/modules/principalView.js"></script>
+  <script src="js/modules/teacherView.js"></script>
+  <script src="js/modules/studentView.js"></script>
+  <script src="js/modules/parentView.js"></script>
+  <script src="js/modules/roadmapView.js"></script>
+
+  <!-- APP ORCHESTRATOR & RBAC LOGIC -->
+  <script>
+    function toggleBlackWhiteTheme() {
+      document.body.classList.toggle('dark-mode');
+      const isDark = document.body.classList.contains('dark-mode');
+      const icon = document.getElementById('theme-icon');
+      const label = document.getElementById('theme-label');
+      if (icon) icon.textContent = isDark ? '☀️' : '🌙';
+      if (label) label.textContent = isDark ? 'Light' : 'Dark';
+    }
+
+    function uploadSchoolLogo(event) {
+      const file = event.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        const school = window.store.getCurrentSchool();
+        school.logo = e.target.result;
+        window.store.saveData();
+        WhiteLabel.applySchoolTheme();
+        alert("School logo updated successfully!");
+      };
+      reader.readAsDataURL(file);
+    }
+
+    function openLoginModal() {
+      document.getElementById('login-modal').classList.remove('hidden');
+    }
+    function closeLoginModal() {
+      document.getElementById('login-modal').classList.add('hidden');
+    }
+
+    function quickLogin(uid, pwd) {
+      document.getElementById('login-userid').value = uid;
+      document.getElementById('login-password').value = pwd;
+      handleUserLogin(new Event('submit'));
+    }
+
+    function handleUserLogin(e) {
+      if (e && e.preventDefault) e.preventDefault();
+      const uid = document.getElementById('login-userid').value.trim();
+      const pwd = document.getElementById('login-password').value.trim();
+
+      const user = window.store.data.users.find(u => u.userId === uid && u.password === pwd);
+      if (user) {
+        closeLoginModal();
+        App.switchRole(user.role);
+        alert(`Welcome back, ${user.name}! Logged in as ${user.role.toUpperCase()}`);
+      } else {
+        alert("Invalid User ID or Password!");
+      }
+    }
+
+    function openRoleBasedAccountCreator() {
+      const role = window.store.getCurrentRole();
+      if (role === 'teacher') {
+        AdminView.addStudentAndParent();
+      } else if (role === 'principal') {
+        const choice = prompt("As Principal, what would you like to add?\n1. Teacher\n2. Student & Parent\n\nEnter 1 or 2:", "2");
+        if (choice === "1") AdminView.addTeacher();
+        else if (choice === "2") AdminView.addStudentAndParent();
+      } else {
+        const choice = prompt("As Admin, what would you like to add?\n1. Principal\n2. Teacher\n3. Student & Parent\n\nEnter 1, 2, or 3:", "3");
+        if (choice === "1") AdminView.addPrincipal();
+        else if (choice === "2") AdminView.addTeacher();
+        else if (choice === "3") AdminView.addStudentAndParent();
+      }
+    }
+
+    const App = {
+      isAutoMode: true,
+
+      init() {
+        this.populateSchoolSelect();
+        WhiteLabel.applySchoolTheme();
+        this.autoDetectScreen();
+
+        window.addEventListener('resize', () => {
+          if (this.isAutoMode) this.autoDetectScreen();
+        });
+        window.addEventListener('orientationchange', () => {
+          if (this.isAutoMode) setTimeout(() => this.autoDetectScreen(), 100);
+        });
+
+        this.render();
+
+        if (window.store) {
+          window.store.subscribe(() => {
+            this.populateSchoolSelect();
+            WhiteLabel.applySchoolTheme();
+            this.render();
+          });
+        }
+      },
+
+      autoDetectScreen() {
+        const isHorizontal = window.innerWidth >= 820 && window.innerWidth > window.innerHeight;
+        const autoMode = isHorizontal ? 'desktop' : 'mobile';
+        if (window.store) window.store.setViewportMode(autoMode);
+        this.updateAutoButtons();
+        this.render();
+      },
+
+      enableAutoMode() {
+        this.isAutoMode = true;
+        this.autoDetectScreen();
+      },
+
+      setManualView(mode) {
+        this.isAutoMode = false;
+        if (window.store) window.store.setViewportMode(mode);
+        this.updateAutoButtons();
+        this.render();
+      },
+
+      updateAutoButtons() {
+        const btnAuto = document.getElementById('btn-view-auto');
+        const btnDesk = document.getElementById('btn-view-desktop');
+        const btnMob = document.getElementById('btn-view-mobile');
+        const currentMode = window.store ? window.store.getViewportMode() : 'desktop';
+
+        if (btnAuto) {
+          btnAuto.className = this.isAutoMode 
+            ? 'px-2.5 py-1 rounded-lg bg-indigo-600 text-white shadow-xs transition flex items-center gap-1 font-bold'
+            : 'px-2.5 py-1 rounded-lg hover:text-slate-900 text-slate-600 transition flex items-center gap-1';
+        }
+        if (btnDesk) {
+          btnDesk.className = (!this.isAutoMode && currentMode === 'desktop')
+            ? 'px-2.5 py-1 rounded-lg bg-white shadow-xs text-slate-900 transition flex items-center gap-1 font-bold'
+            : 'px-2.5 py-1 rounded-lg hover:text-slate-900 text-slate-600 transition flex items-center gap-1';
+        }
+        if (btnMob) {
+          btnMob.className = (!this.isAutoMode && currentMode === 'mobile')
+            ? 'px-2.5 py-1 rounded-lg bg-white shadow-xs text-slate-900 transition flex items-center gap-1 font-bold'
+            : 'px-2.5 py-1 rounded-lg hover:text-slate-900 text-slate-600 transition flex items-center gap-1';
+        }
+      },
+
+      populateSchoolSelect() {
+        const select = document.getElementById('school-select');
+        if (!select || !window.store) return;
+        const currentSchool = window.store.getCurrentSchool();
+        select.innerHTML = window.store.data.schools.map(s => `
+          <option value="${s.id}" ${s.id === currentSchool.id ? 'selected' : ''}>
+            ${s.name} (${s.shortName})
+          </option>
+        `).join('');
+      },
+
+      handleSchoolChange(schoolId) {
+        WhiteLabel.switchSchool(schoolId);
+      },
+
+      switchRole(role) {
+        if (window.store) window.store.setCurrentRole(role);
+      },
+
+      resetAllData() {
+        if (confirm("Reset application data back to factory demo state?")) {
+          if (window.store) window.store.resetDatabase();
+          alert("Database reset to initial demo seeds!");
+          location.reload();
+        }
+      },
+
+      render() {
+        if (!window.store) return;
+        const role = window.store.getCurrentRole();
+        const mode = window.store.getViewportMode();
+
+        const desktopWrapper = document.getElementById('desktop-wrapper');
+        const mobileWrapper = document.getElementById('mobile-wrapper');
+
+        if (mode === 'desktop') {
+          if (desktopWrapper) desktopWrapper.classList.remove('hidden');
+          if (mobileWrapper) mobileWrapper.classList.add('hidden');
+        } else {
+          if (desktopWrapper) desktopWrapper.classList.add('hidden');
+          if (mobileWrapper) mobileWrapper.classList.remove('hidden');
+        }
+
+        // Highlight Active Role Button
+        const allRoles = ['admin', 'principal', 'teacher', 'student', 'parent'];
+        allRoles.forEach(r => {
+          const btn = document.getElementById('role-btn-' + r);
+          if (btn) {
+            if (r === role) {
+              btn.className = 'px-3 py-1.5 rounded-xl transition flex items-center gap-1.5 text-xs font-bold bg-slate-900 text-white shadow-xs';
+            } else {
+              btn.className = 'px-3 py-1.5 rounded-xl transition flex items-center gap-1.5 text-xs font-semibold text-slate-600 hover:bg-slate-200/70';
+            }
+          }
+        });
+
+        // 🔒 RBAC Permission: HIDE "+ Create Account" for Student and Parent!
+        const createBtn = document.getElementById('create-account-btn');
+        if (createBtn) {
+          if (role === 'student' || role === 'parent') {
+            createBtn.style.display = 'none'; // GONE for Students & Parents!
+          } else {
+            createBtn.style.display = 'inline-flex'; // VISIBLE only for Admin, Principal, Teacher
+          }
+        }
+
+        const targetContainer = mode === 'desktop' 
+          ? document.getElementById('view-container') 
+          : document.getElementById('mobile-view-container');
+
+        const mobileLabel = document.getElementById('mobile-role-label');
+        if (mobileLabel) {
+          mobileLabel.textContent = `${role.toUpperCase()} PORTAL`;
+        }
+
+        if (!targetContainer) return;
+
+                switch (role) {
+          case 'admin': AdminView.render(targetContainer); break;
+          case 'principal': PrincipalView.render(targetContainer); break;
+          case 'teacher': TeacherView.render(targetContainer); break;
+          case 'student': StudentView.render(targetContainer); break;
+          case 'parent': ParentView.render(targetContainer); break;
+          default: AdminView.render(targetContainer);
+        }
+      }
+    };
+
+    // 🚀 Start App
+    window.App = App;
+    App.init();
+  </script>
+</body>
+</html>
