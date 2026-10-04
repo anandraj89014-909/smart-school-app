@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smart School Platform — Modern Educational Management System</title>
+  <!-- Tailwind CSS CDN for instant modern styling -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: #070b12;
+      color: #f1f5f9;
+    }
+    .gradient-text {
+      background: linear-gradient(135deg, #38bdf8 0%, #818cf8 50%, #c084fc 100%);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .glass-card {
+      background: rgba(15, 23, 42, 0.75);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.5);
+    }
+    .glass-card:hover {
+      border-color: rgba(56, 189, 248, 0.3);
+      transform: translateY(-4px);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .tab-active {
+      background: linear-gradient(135deg, #2563eb, #4f46e5) !important;
+      color: #ffffff !important;
+      border-color: transparent !important;
+      box-shadow: 0 8px 20px -4px rgba(79, 70, 229, 0.5);
+    }
+  </style>
+</head>
+<body class="min-h-screen selection:bg-indigo-500 selection:text-white">
+
+  <!-- TOP NAVIGATION BAR -->
+  <header class="sticky top-0 z-50 glass-card border-b border-slate-800/80 px-6 py-4">
+    <div class="max-w-7xl mx-auto flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-blue-600 to-indigo-500 flex items-center justify-center text-white text-xl shadow-lg shadow-indigo-500/30">
+          <i class="fa-solid fa-graduation-cap"></i>
+        </div>
+        <div>
+          <span class="text-xl font-bold tracking-tight text-white">Smart<span class="gradient-text">School</span></span>
+          <span class="text-[10px] font-semibold tracking-wider uppercase ml-1 px-2 py-0.5 rounded-full bg-blue-500/20 text-blue-400 border border-blue-500/30">OS 2.0</span>
+        </div>
+      </div>
+
+      <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-300">
+        <a href="#features" class="hover:text-cyan-400 transition">Features</a>
+        <a href="#roles" class="hover:text-cyan-400 transition">5 Roles</a>
+        <a href="#screenshots" class="hover:text-cyan-400 transition">Screenshots & Media</a>
+        <a href="#guest-test" class="hover:text-cyan-400 transition">Guest Demo</a>
+      </nav>
+
+      <div class="flex items-center gap-3">
+        <a href="#guest-test" class="hidden sm:inline-flex text-xs font-semibold px-4 py-2 rounded-lg border border-slate-700 hover:border-slate-500 text-slate-300 transition">
+          <i class="fa-solid fa-key mr-2 mt-0.5 text-amber-400"></i> Guest Logins
+        </a>
+        <a href="index.html" class="inline-flex items-center gap-2 text-xs md:text-sm font-bold px-5 py-2.5 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white shadow-lg shadow-indigo-600/30 transition">
+          <span>Launch Live App</span>
+          <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section class="relative pt-20 pb-24 overflow-hidden text-center px-4">
+    <!-- Glow Background Accents -->
+    <div class="absolute -top-40 left-1/2 -translate-x-1/2 w-[700px] h-[500px] bg-indigo-600/15 blur-[140px] pointer-events-none rounded-full"></div>
+    <div class="absolute top-60 right-10 w-96 h-96 bg-cyan-500/10 blur-[120px] pointer-events-none rounded-full"></div>
+
+    <div class="max-w-4xl mx-auto relative z-10">
+      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full glass-card border border-indigo-500/30 text-xs font-semibold text-indigo-300 mb-6 shadow-inner">
+        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+        Multi-Tenant Architecture • Mobile & Web Ready
+      </div>
+
+      <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight text-white leading-tight mb-6">
+        Next-Generation <br>
+        <span class="gradient-text">Smart School Management</span> Platform
+      </h1>
+
+      <p class="text-base sm:text-lg text-slate-400 max-w-2xl mx-auto mb-10 leading-relaxed">
+        A centralized, real-time ecosystem connecting <strong>Admins, Principals, Teachers, Students, and Parents</strong>. Experience 1-tap roll call, instant grade cards, and live communication.
+      </p>
+
+      <div class="flex flex-wrap items-center justify-center gap-4">
+        <a href="index.html" class="inline-flex items-center gap-3 px-7 py-3.5 rounded-2xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-bold text-sm sm:text-base shadow-xl shadow-cyan-500/25 transition">
+          <i class="fa-solid fa-play"></i>
+          <span>Open Web & Mobile App</span>
+        </a>
+        <a href="#guest-test" class="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-2xl glass-card text-slate-200 hover:text-white font-semibold text-sm sm:text-base border border-slate-700 hover:border-slate-500 transition">
+          <i class="fa-solid fa-flask text-amber-400"></i>
+          <span>Try Guest Testing</span>
+        </a>
+      </div>
+
+      <!-- Quick Platform Stats -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-16 max-w-3xl mx-auto">
+        <div class="glass-card p-4 rounded-2xl">
+          <div class="text-2xl font-bold text-cyan-400">5 Roles</div>
+          <div class="text-xs text-slate-400 mt-1">Unified Hierarchy</div>
+        </div>
+        <div class="glass-card p-4 rounded-2xl">
+          <div class="text-2xl font-bold text-indigo-400">100%</div>
+          <div class="text-xs text-slate-400 mt-1">Browser Accessible</div>
+        </div>
+        <div class="glass-card p-4 rounded-2xl">
+          <div class="text-2xl font-bold text-emerald-400">1-Tap</div>
+          <div class="text-xs text-slate-400 mt-1">Roll Call Attendance</div>
+        </div>
+        <div class="glass-card p-4 rounded-2xl">
+          <div class="text-2xl font-bold text-purple-400">Zero Setup</div>
+          <div class="text-xs text-slate-400 mt-1">Instant Sample Testing</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5 ROLES INTERACTIVE SHOWCASE -->
+  <section id="roles" class="py-20 px-4 max-w-7xl mx-auto border-t border-slate-800/80">
+    <div class="text-center mb-14">
+      <span class="text-xs font-bold uppercase tracking-widest text-cyan-400">Role-Based Ecosystem</span>
+      <h2 class="text-3xl sm:text-4xl font-bold text-white mt-2">Tailored for Every Stakeholder</h2>
+      <p class="text-slate-400 text-sm max-w-xl mx-auto mt-2">Click any role to see its dedicated features and workflows.</p>
+
+      <!-- Role Tabs -->
+      <div class="flex flex-wrap justify-center gap-2 mt-8">
+        <button onclick="switchRoleTab('admin')" id="tab-admin" class="tab-btn tab-active px-5 py-2.5 rounded-xl text-xs sm:text-sm font-semibold border border-slate-700 transition">
+          <i class="fa-solid fa-shield-halved mr-1.5"></i> Super Admin
+        </button>
+        <button onclick="switchRoleTab('principal')" id="tab-principal" class="tab-btn px-5 py-2.5 rounded-xl text-xs sm:text-sm font-semibold border border-slate-700 text-slate-300 transition">
+          <i class="fa-solid fa-building-columns mr-1.5"></i> Principal
+        </button>
+        <button onclick="switchRoleTab('teacher')" id="tab-teacher" class="tab-btn px-5 py-2.5 rounded-xl text-xs sm:text-sm font-semibold border border-slate-700 text-slate-300 transition">
+          <i class="fa-solid fa-chalkboard-user mr-1.5"></i> Teacher
+        </button>
+        <button onclick="switchRoleTab('student')" id="tab-student" class="tab-btn px-5 py-2.5 rounded-xl text-xs sm:text-sm font-semibold border border-slate-700 text-slate-300 transition">
+          <i class="fa-solid fa-user-graduate mr-1.5"></i> Student
+        </button>
+        <button onclick="switchRoleTab('parent')" id="tab-parent" class="tab-btn px-5 py-2.5 rounded-xl text-xs sm:text-sm font-semibold border border-slate-700 text-slate-300 transition">
+          <i class="fa-solid fa-users mr-1.5"></i> Parent
+        </button>
+      </div>
+    </div>
+
+    <!-- Role Content Display Card -->
+    <div id="role-display-box" class="glass-card rounded-3xl p-8 sm:p-12 border border-slate-800">
+      <!-- Admin Content (Default) -->
+      <div id="content-admin" class="role-content grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+        <div>
+          <span class="px-3 py-1 rounded-full bg-blue-500/20 text-blue-400 text-xs font-semibold">Tier 1 • Master Control</span>
+          <h3 class="text-2xl sm:text-3xl font-bold text-white mt-3 mb-4">Super Administrator Hierarchy</h3>
+          <p class="text-slate-300 text-sm leading-relaxed mb-6">
+            Manage multi-school tenants with complete security. Drill down seamlessly from School Tenants &rarr; Principals &rarr; Teachers &rarr; Class 8-A Students and view user credentials in real-time.
+          </p>
+          <ul class="space-y-3 text-sm text-slate-300">
+            <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-cyan-400"></i> Add multiple schools with custom branding & logos</li>
+            <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-cyan-400"></i> Provision Principals & view generated User IDs/Passwords</li>
+            <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-cyan-400"></i> Multi-tenant data isolation & local state storage</li>
+          </ul>
+        </div>
+        <div class="bg-slate-950/70 p-6 rounded-2xl border border-slate-800 font-mono text-xs">
+          <div class="text-slate-400 mb-2">// 3-Tier Drill-Down Hierarchy</div>
+          <div class="p-3 bg-slate-900 rounded-lg text-emerald-400 mb-2">🏫 School: Loyola Convent School</div>
+          <div class="p-3 bg-slate-900 rounded-lg text-indigo-400 ml-4 mb-2">↳ 👨‍💼 Principal: Dr. Robert Vance</div>
+          <div class="p-3 bg-slate-900 rounded-lg text-amber-400 ml-8 mb-2">↳ 👩‍🏫 Faculty: 4 Active Teachers</div>
+          <div class="p-3 bg-slate-900 rounded-lg text-cyan-400 ml-12">↳ 🎒 Students: Class 8-A Roster (10 Enrolled)</div>
+        </div>
+      </div>
+
+      <!-- Principal Content -->
+      <div id="content-principal" class="role-content hidden grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+        <div>
+          <span class="px-3 py-1 rounded-full bg-indigo-500/20 text-indigo-400 text-xs font-semibold">Tier 2 • Campus Leadership</span>
+          <h3 class="text-2xl sm:text-3xl font-bold text-white mt-3 mb-4">Principal Academic Dashboard</h3>
+          <p class="text-slate-300 text-sm leading-relaxed mb-6">
+            Monitor real-time campus KPIs, track total teacher-to-student ratios, oversee faculty departments, and broadcast urgent academic circulars to all staff and parents.
+          </p>
+          <ul class="space-y-3 text-sm text-slate-300">
+            <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-indigo-400"></i> Live campus analytics & attendance rate (94.2%)</li>
+            <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-indigo-400"></i> 1-click official circular broadcasting system</li>
+            <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-indigo-400"></i> Faculty allocation across 8 academic departments</li>
+          </ul>
+        </div>
+        <div class="bg-slate-950/70 p-6 rounded-2xl border border-slate-800">
+          <div class="flex items-center justify-between border-b border-slate-800 pb-3 mb-3">
+            <span class="text-xs font-bold text-slate-400">CAMPUS METRIC</span>
+            <span class="text-xs px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400">LIVE</span>
+          </div>
+          <div class="grid grid-cols-2 gap-3 text-center">
+            <div class="p-3 bg-slate-900 rounded-xl">
+              <div class="text-xl font-bold text-white">1,240</div>
+              <div class="text-[11px] text-slate-400">Total Students</div>
+            </div>
+            <div class="p-3 bg-slate-900 rounded-xl">
+              <div class="text-xl font-bold text-emerald-400">94.2%</div>
+              <div class="text-[11px] text-slate-400">Today's Attendance</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Teacher Content -->
+      <div id="content-teacher" class="role-content hidden grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+        <div>
+          <span class="px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-400 text-xs font-semibold">Tier 3 • Classroom Hub</span>
+          <h3 class="text-2xl sm:text-3xl font-bold text-white mt-3 mb-4">Teacher Portal & Roll Call</h3>
+          <p class="text-slate-300 text-sm leading-relaxed mb-6">
+            Empower educators with lightning-fast roll call attendance, homework creation with due dates, study material uploads, and direct one-on-one chat with parents.
+          </p>
+          <ul class="space-y-3 text-sm text-slate-300">
+            <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-emerald-400"></i> 1-Tap Attendance: Present, Absent, Late</li>
+            <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-emerald-400"></i> Digital Gradebook entry & test scores</li>
+            <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-emerald-400"></i> Direct instant chat with students' parents</li>
+          </ul>
+        </div>
+        <div class="bg-slate-950/70 p-6 rounded-2xl border border-slate-800">
+          <div class="text-xs font-bold text-slate-400 mb-3">TODAY'S ROLL CALL (CLASS 8-A)</div>
+          <div class="space-y-2">
+            <div class="flex items-center justify-between p-2.5 bg-slate-900 rounded-lg text-xs">
+              <span class="text-white font-medium">Aarav Sharma (Roll #1)</span>
+              <span class="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400 font-bold">PRESENT</span>
+            </div>
+            <div class="flex items-center justify-between p-2.5 bg-slate-900 rounded-lg text-xs">
+              <span class="text-white font-medium">Diya Patel (Roll #2)</span>
+              <span class="px-2 py-0.5 rounded bg-rose-500/20 text-rose-400 font-bold">ABSENT</span>
+            </div>
+            <div class="flex items-center justify-between p-2.5 bg-slate-900 rounded-lg text-xs">
+              <span class="text-white font-medium">Ishaan Verma (Roll #3)</span>
+              <span class="px-2 py-0.5 rounded bg-amber-500/20 text-amber-400 font-bold">LATE</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Student Content -->
+      <div id="content-student" class="role-content hidden grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+        <div>
+          <span class="px-3 py-1 rounded-full bg-cyan-500/20 text-cyan-400 text-xs font-semibold">Tier 4 • Student Learning Space</span>
+          <h3 class="text-2xl sm:text-3xl font-bold text-white mt-3 mb-4">Student Hub & Submissions</h3>
+          <p class="text-slate-300 text-sm leading-relaxed mb-6">
+            Students can track their attendance streak, download study notes, check their weekly class schedule, and submit homework directly from their smartphone.
+          </p>
+          <ul class="space-y-3 text-sm text-slate-300">
+            <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-cyan-400"></i> Interactive weekly timetable with periods & subjects</li>
+            <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-cyan-400"></i> Homework submission modal with file upload simulation</li>
+            <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-cyan-400"></i> Attendance streak badge & subject report cards</li>
+          </ul>
+        </div>
+        <div class="bg-slate-950/70 p-6 rounded-2xl border border-slate-800">
+          <div class="flex items-center justify-between border-b border-slate-800 pb-3 mb-3 text-xs">
+            <span class="font-bold text-slate-400">WEEKLY TIMETABLE</span>
+            <span class="text-cyan-400">Class 8-A</span>
+          </div>
+          <div class="grid grid-cols-3 gap-2 text-center text-xs">
+            <div class="p-2 bg-slate-900 rounded-lg"><div class="font-bold text-white">09:00 AM</div><div class="text-slate-400 text-[10px]">Mathematics</div></div>
+            <div class="p-2 bg-slate-900 rounded-lg"><div class="font-bold text-white">10:00 AM</div><div class="text-slate-400 text-[10px]">Physics Lab</div></div>
+            <div class="p-2 bg-slate-900 rounded-lg"><div class="font-bold text-white">11:15 AM</div><div class="text-slate-400 text-[10px]">English Lit.</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Parent Content -->
+      <div id="content-parent" class="role-content hidden grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+        <div>
+          <span class="px-3 py-1 rounded-full bg-purple-500/20 text-purple-400 text-xs font-semibold">Tier 5 • Family Guardian</span>
+          <h3 class="text-2xl sm:text-3xl font-bold text-white mt-3 mb-4">Parent Companion App</h3>
+          <p class="text-slate-300 text-sm leading-relaxed mb-6">
+            Parents get immediate peace of mind with real-time child presence alerts, homework tracking, academic scorecards, fee invoices (₹), and direct messaging with the class teacher.
+          </p>
+          <ul class="space-y-3 text-sm text-slate-300">
+            <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-purple-400"></i> Real-time "Marked Present" live notification</li>
+            <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-purple-400"></i> Fee breakdown & payment status in Indian Rupees (₹)</li>
+            <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-purple-400"></i> Direct secure chat with Class Teacher</li>
+          </ul>
+        </div>
+        <div class="bg-slate-950/70 p-6 rounded-2xl border border-slate-800">
+          <div class="p-3 bg-emerald-500/10 border border-emerald-500/30 rounded-xl flex items-center gap-3 mb-3">
+            <i class="fa-solid fa-bell text-emerald-400 text-base"></i>
+            <div>
+              <div class="text-xs font-bold text-emerald-300">Child Marked Present Today</div>
+              <div class="text-[11px] text-slate-400">Aarav Sharma arrived at 08:45 AM</div>
+            </div>
+          </div>
+          <div class="p-3 bg-slate-900 rounded-xl flex items-center justify-between text-xs">
+            <span class="text-slate-300">Term 2 Tuition Fee</span>
+            <span class="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400 font-bold">₹18,500 PAID</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCREENSHOTS & VIDEO DEMO GALLERY -->
+  <section id="screenshots" class="py-20 px-4 max-w-7xl mx-auto border-t border-slate-800/80">
+    <div class="text-center mb-14">
+      <span class="text-xs font-bold uppercase tracking-widest text-indigo-400">Media Showcase</span>
+      <h2 class="text-3xl sm:text-4xl font-bold text-white mt-2">Screenshots & Video Walkthrough</h2>
+      <p class="text-slate-400 text-sm max-w-xl mx-auto mt-2">Experience the user interface in both mobile and widescreen modes.</p>
+    </div>
+
+    <!-- Media Cards Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      
+      <!-- Video / Motion Clip Preview Card -->
+      <div class="glass-card rounded-2xl p-4 border border-slate-800 md:col-span-2">
+        <div class="relative aspect-video rounded-xl bg-slate-950 border border-slate-800 overflow-hidden flex flex-col items-center justify-center group">
+          <div class="w-16 h-16 rounded-full bg-blue-600/80 group-hover:bg-blue-500 text-white flex items-center justify-center text-xl shadow-xl shadow-blue-500/40 cursor-pointer transition transform group-hover:scale-110">
+            <i class="fa-solid fa-play ml-1"></i>
+          </div>
+          <div class="mt-4 text-xs font-bold text-slate-300">Full System Feature Walkthrough Clip</div>
+          <div class="text-[11px] text-slate-500">Live preview of roll call, timetable, and multi-tenant switcher</div>
+        </div>
+        <div class="mt-3 flex items-center justify-between px-1">
+          <span class="text-xs font-semibold text-white">Interactive App Video</span>
+          <span class="text-[11px] text-cyan-400 font-medium">1080p 60FPS</span>
+        </div>
+      </div>
+
+      <!-- Mobile UI Chassis Preview -->
+      <div class="glass-card rounded-2xl p-4 border border-slate-800 flex flex-col justify-between">
+        <div class="aspect-[9/16] rounded-xl bg-slate-950 border border-slate-800 p-3 flex flex-col justify-between overflow-hidden">
+          <div class="text-[10px] text-slate-400 flex items-center justify-between pb-2 border-b border-slate-800">
+            <span>Loyola Convent School</span>
+            <span class="text-emerald-400">● LIVE</span>
+          </div>
+          <div class="space-y-2">
+            <div class="p-2 bg-slate-900 rounded text-[11px] text-white font-bold">Class 8-A Portal</div>
+            <div class="p-2 bg-slate-900 rounded text-[10px] text-slate-400">Attendance: 95% Streak</div>
+            <div class="p-2 bg-blue-600/30 text-blue-300 rounded text-[10px]">Mathematics Assignment #4 Due</div>
+          </div>
+          <div class="text-center text-[10px] text-slate-500 py-1 bg-slate-900/60 rounded">Mobile Responsive Chassis</div>
+        </div>
+        <div class="mt-3 flex items-center justify-between px-1">
+          <span class="text-xs font-semibold text-white">Smart Phone UI Mode</span>
+          <span class="text-[11px] text-indigo-400">Auto-Detect</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GUEST TESTING & SAMPLING (WHAT YOU REQUESTED) -->
+  <section id="guest-test" class="py-20 px-4 max-w-7xl mx-auto border-t border-slate-800/80">
+    <div class="text-center mb-14">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-400 text-xs font-bold mb-3">
+        <i class="fa-solid fa-key"></i> Instant Guest Testing
+      </div>
+      <h2 class="text-3xl sm:text-4xl font-bold text-white">Try the Live System as a Guest</h2>
+      <p class="text-slate-400 text-sm max-w-xl mx-auto mt-2">
+        New visitors can test and sample every feature without signing up. Use these sample accounts to explore:
+      </p>
+    </div>
+
+    <!-- 5 Guest Login Credentials Cards -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+      
+      <!-- Guest Admin -->
+      <div class="glass-card rounded-2xl p-6 border border-slate-800 flex flex-col justify-between">
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <span class="text-xs font-bold px-2.5 py-1 rounded-md bg-blue-500/20 text-blue-400">Super Admin</span>
+            <i class="fa-solid fa-shield-halved text-blue-400"></i>
+          </div>
+          <div class="space-y-1.5 font-mono text-xs bg-slate-950 p-3 rounded-xl border border-slate-800 mb-4">
+            <div><span class="text-slate-500">User ID:</span> <span class="text-white font-bold">admin</span></div>
+            <div><span class="text-slate-500">Password:</span> <span class="text-cyan-400 font-bold">password123</span></div>
+          </div>
+          <p class="text-xs text-slate-400 leading-relaxed mb-4">
+            <strong>Sample this:</strong> Add new schools, provision principals, and inspect the 3-tier hierarchy.
+          </p>
+        </div>
+        <a href="index.html" class="w-full text-center text-xs font-bold py-2.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white transition">
+          Sample Admin Role &rarr;
+        </a>
+      </div>
+
+      <!-- Guest Principal -->
+      <div class="glass-card rounded-2xl p-6 border border-slate-800 flex flex-col justify-between">
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <span class="text-xs font-bold px-2.5 py-1 rounded-md bg-indigo-500/20 text-indigo-400">Principal</span>
+            <i class="fa-solid fa-building-columns text-indigo-400"></i>
+          </div>
+          <div class="space-y-1.5 font-mono text-xs bg-slate-950 p-3 rounded-xl border border-slate-800 mb-4">
+            <div><span class="text-slate-500">User ID:</span> <span class="text-white font-bold">principal_01</span></div>
+            <div><span class="text-slate-500">Password:</span> <span class="text-cyan-400 font-bold">password123</span></div>
+          </div>
+          <p class="text-xs text-slate-400 leading-relaxed mb-4">
+            <strong>Sample this:</strong> Check campus KPI metrics and broadcast official announcements.
+          </p>
+        </div>
+        <a href="index.html" class="w-full text-center text-xs font-bold py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white transition">
+          Sample Principal Role &rarr;
+        </a>
+      </div>
+
+      <!-- Guest Teacher -->
+      <div class="glass-card rounded-2xl p-6 border border-slate-800 flex flex-col justify-between">
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <span class="text-xs font-bold px-2.5 py-1 rounded-md bg-emerald-500/20 text-emerald-400">Class Teacher</span>
+            <i class="fa-solid fa-chalkboard-user text-emerald-400"></i>
+          </div>
+          <div class="space-y-1.5 font-mono text-xs bg-slate-950 p-3 rounded-xl border border-slate-800 mb-4">
+            <div><span class="text-slate-500">User ID:</span> <span class="text-white font-bold">teacher_01</span></div>
+            <div><span class="text-slate-500">Password:</span> <span class="text-cyan-400 font-bold">password123</span></div>
+          </div>
+          <p class="text-xs text-slate-400 leading-relaxed mb-4">
+            <strong>Sample this:</strong> Mark 1-tap roll call attendance, assign homework, and chat with parents.
+          </p>
+        </div>
+        <a href="index.html" class="w-full text-center text-xs font-bold py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white transition">
+          Sample Teacher Role &rarr;
+        </a>
+      </div>
+
+      <!-- Guest Student -->
+      <div class="glass-card rounded-2xl p-6 border border-slate-800 flex flex-col justify-between">
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <span class="text-xs font-bold px-2.5 py-1 rounded-md bg-cyan-500/20 text-cyan-400">Student</span>
+            <i class="fa-solid fa-user-graduate text-cyan-400"></i>
+          </div>
+          <div class="space-y-1.5 font-mono text-xs bg-slate-950 p-3 rounded-xl border border-slate-800 mb-4">
+            <div><span class="text-slate-500">User ID:</span> <span class="text-white font-bold">student_01</span></div>
+            <div><span class="text-slate-500">Password:</span> <span class="text-cyan-400 font-bold">password123</span></div>
+          </div>
+          <p class="text-xs text-slate-400 leading-relaxed mb-4">
+            <strong>Sample this:</strong> View class timetable, submit homework tasks, and view test scorecards.
+          </p>
+        </div>
+        <a href="index.html" class="w-full text-center text-xs font-bold py-2.5 rounded-xl bg-cyan-600 hover:bg-cyan-500 text-white transition">
+          Sample Student Role &rarr;
+        </a>
+      </div>
+
+      <!-- Guest Parent -->
+      <div class="glass-card rounded-2xl p-6 border border-slate-800 flex flex-col justify-between">
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <span class="text-xs font-bold px-2.5 py-1 rounded-md bg-purple-500/20 text-purple-400">Parent</span>
+            <i class="fa-solid fa-users text-purple-400"></i>
+          </div>
+          <div class="space-y-1.5 font-mono text-xs bg-slate-950 p-3 rounded-xl border border-slate-800 mb-4">
+            <div><span class="text-slate-500">User ID:</span> <span class="text-white font-bold">parent_01</span></div>
+            <div><span class="text-slate-500">Password:</span> <span class="text-cyan-400 font-bold">password123</span></div>
+          </div>
+          <p class="text-xs text-slate-400 leading-relaxed mb-4">
+            <strong>Sample this:</strong> View live child presence status, homework tracker, and fee invoices (₹).
+          </p>
+        </div>
+        <a href="index.html" class="w-full text-center text-xs font-bold py-2.5 rounded-xl bg-purple-600 hover:bg-purple-500 text-white transition">
+          Sample Parent Role &rarr;
+        </a>
+      </div>
+
+      <!-- 1-Click Sandbox Test Card -->
+      <div class="glass-card rounded-2xl p-6 border border-indigo-500/30 bg-gradient-to-br from-indigo-950/40 to-slate-950 flex flex-col justify-between">
+        <div>
+          <span class="text-xs font-bold px-2.5 py-1 rounded-md bg-amber-500/20 text-amber-400">Instant Access</span>
+          <h4 class="text-lg font-bold text-white mt-3 mb-2">No Sign-Up Required</h4>
+          <p class="text-xs text-slate-300 leading-relaxed mb-4">
+            Visitors can also switch between any role instantly using the top bar role dropdown inside the app.
+          </p>
+        </div>
+        <a href="index.html" class="w-full text-center text-xs font-bold py-3 rounded-xl bg-gradient-to-r from-amber-500 to-indigo-600 hover:opacity-90 text-white shadow-lg transition">
+          🚀 Open Full Sandbox
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="glass-card border-t border-slate-800/80 py-10 px-6 text-center text-xs text-slate-500">
+    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div class="flex items-center gap-2">
+        <span class="text-white font-bold">SmartSchool OS</span>
+        <span>— All-in-One Education Platform</span>
+      </div>
+      <div class="flex items-center gap-4 text-slate-400">
+        <a href="index.html" class="hover:text-cyan-400 transition">Launch App</a>
+        <a href="https://github.com/anandraj89014-909/smart-school-app" target="_blank" class="hover:text-white transition">GitHub Repo</a>
+      </div>
+      <div>
+        © 2026 Smart School Platform. All Rights Reserved.
+      </div>
+    </div>
+  </footer>
+
+  <!-- SCRIPT FOR INTERACTIVE ROLE TABS -->
+  <script>
+    function switchRoleTab(role) {
+      // Hide all contents
+      document.querySelectorAll('.role-content').forEach(el => el.classList.add('hidden'));
+      // Remove active class from all buttons
+      document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.classList.remove('tab-active');
+        btn.classList.add('text-slate-300');
+      });
+
+      // Show selected content & set active button
+      document.getElementById('content-' + role).classList.remove('hidden');
+      const activeBtn = document.getElementById('tab-' + role);
+      activeBtn.classList.add('tab-active');
+      activeBtn.classList.remove('text-slate-300');
+    }
+  </script>
+</body>
+</html>
